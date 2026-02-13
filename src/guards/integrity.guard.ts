@@ -43,7 +43,7 @@ export class IntegrityGuard implements CanActivate {
 
         // NOTA: Para producción real, se debe usar un interceptor que capture raw body. 
         // Aquí asumiremos que si hay body, lo stringify igual.
-        const bodyString = Object.keys(request.body).length > 0 ? JSON.stringify(request.body) : '';
+        const bodyString = (request.body && Object.keys(request.body).length > 0) ? JSON.stringify(request.body) : '';
 
         // IMPORTANTE: El cliente firma: method + url + timestamp + dataString
         // Revisar qué manda axios en url. Si baseURL es http://... y url es /users, axios manda /users en config.url?
