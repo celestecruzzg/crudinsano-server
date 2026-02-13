@@ -19,8 +19,15 @@ async function bootstrap() {
     }),
   );
 
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
+  const allowedOrigins = [
+    frontendUrl,
+    frontendUrl.replace(/\/$/, ''),
+    'http://localhost:3000',
+  ];
+
   app.enableCors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3001",
+    origin: allowedOrigins,
     credentials: true,
   });
 
