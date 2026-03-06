@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { UserModule } from 'src/users/users.module';
-import { IntegrityGuard } from './guards/integrity.guard';
 
 @Module({
   imports: [
@@ -43,10 +42,6 @@ import { IntegrityGuard } from './guards/integrity.guard';
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: IntegrityGuard,
     },
   ],
 })
